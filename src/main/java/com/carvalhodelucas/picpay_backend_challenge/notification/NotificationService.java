@@ -7,8 +7,14 @@ import com.carvalhodelucas.picpay_backend_challenge.transaction.Transaction;
 @Service
 public class NotificationService {
 
-    public void notify(Transaction transaction) {
+    private final NotificationProducer notificationProducer;
 
+    public NotificationService(NotificationProducer notificationProducer) {
+        this.notificationProducer = notificationProducer;
+    }
+
+    public void notify(Transaction transaction) {
+        notificationProducer.sendNotification(transaction);
     }
 
 }
